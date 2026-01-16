@@ -1,0 +1,40 @@
+* Setup
+
+- Nix
+- VM for nix minimal
+
+** Pre install
+
+Boot up nixos minimal iso to the vm and setup password for =nixos= user
+
+#+BEGIN_SRC bash
+> passwd
+#+END_SRC
+
+Identify IP
+
+#+BEGIN_SRC bash
+> ip a
+#+END_SRC
+
+Clone repo and replace with your pub key on the root user config
+
+#+BEGIN_SRC bash
+openssh.authorizedKeys.keys = [
+  <your-pub-key>
+];
+#+END_SRC
+
+** Installation
+
+Using nixos-anywhere run the following command to initiate remote install
+
+#+BEGIN_SRC bash
+  sudo nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hardware-configuration.nix --build-on-remote --flake .#nxm nixos@<ip> --show-trace
+#+END_SRC
+
+Assuming there are no errors with the command, you can now login to the server
+
+#+BEGIN_SRC bash
+  ssh root@<vm-ip>
+#+END_SRC
