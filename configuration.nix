@@ -38,7 +38,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
@@ -98,6 +97,8 @@
 
   # List services that you want to enable:
 
+  programs.ssh.startAgent = true;
+
   services.caddy = {
     enable = true;
     virtualHosts."localhost".extraConfig = ''
@@ -106,9 +107,11 @@
   };
 
   # Enable the OpelnSSH daemon.
-  services.openssh.enable = true;
-  # settings.PasswordAuthentication = false;
-  # settings.KbdInteractiveAuthentication = false;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [

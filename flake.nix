@@ -20,8 +20,8 @@
     };
 
     deploy.nodes.nxm = {
-      hostname = "nxm";
-      sshUser = "peiso";
+      hostname = "192.168.254.113";
+      sshUser = "root";
       profiles.system = {
         user = "root";
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nxm;
