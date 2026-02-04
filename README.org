@@ -38,3 +38,11 @@ Assuming there are no errors with the command, you can now login to the server
 #+BEGIN_SRC bash
   ssh root@<vm-ip>
 #+END_SRC
+
+** Update instance
+
+Once configured, update the vm via flake
+
+#+begin_src bash
+nix run github:serokell/deploy-rs .#nxm
+#+end_src
